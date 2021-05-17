@@ -12,7 +12,6 @@ export function HomePage() {
       </Helmet>
       <span>HomePage Hello!!! what's up 你好</span>
       <Link to="/signIn"> Sign In </Link>
-      <AuthForm />
     </>
   );
 }
