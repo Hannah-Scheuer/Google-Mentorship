@@ -4,10 +4,34 @@
  *
  */
 import * as React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { ChangeEvent } from 'react';
 
 interface Props {}
 
 export function AuthForm(props: Props) {
+  function handleSubmit() {
+    //event.preventDefault();
+    alert(username);
+    axios
+      .post('http://localhost:8000/accounts/register/', { username })
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  const [username, setUsername] = useState('');
+  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUsername(e.currentTarget.value);
+  };
+  const [password, setPassword] = useState('');
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.currentTarget.value);
+  };
   return (
     <div>
       <form>
@@ -15,17 +39,17 @@ export function AuthForm(props: Props) {
         <input
           type="text"
           placeholder="username"
-          //value={formValues.username}
           name="username"
-          //onChange={handleInputChange}
+          value={username}
+          onChange={handleUsernameChange}
         />
         <p> password </p>
         <input
           type="password"
-          //value={formValues.password1}
+          value={password}
           name="password1"
           placeholder="password1"
-          //onChange={handleInputChange}
+          onChange={handlePasswordChange}
         />
         <p> confirm password </p>
         <input
@@ -56,8 +80,8 @@ export function AuthForm(props: Props) {
           <option>Mandarin</option>
         </select>
         <p> submit here! </p>
-        <input type="submit" value="submit" />
       </form>
+      <button onClick={handleSubmit}> submit </button>
     </div>
   );
 }
