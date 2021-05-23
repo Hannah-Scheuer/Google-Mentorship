@@ -7,10 +7,14 @@ import * as React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { ChangeEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useAuthSlice, authActions } from './AuthSlice';
+import { selectAuth } from './AuthSlice/selectors';
 
 interface Props {}
 
 export function AuthForm(props: Props) {
+  /*
   function handleSubmit() {
     //event.preventDefault();
     alert(username);
@@ -23,15 +27,20 @@ export function AuthForm(props: Props) {
         console.log(error);
       });
   }
-
-  const [username, setUsername] = useState('');
   const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUsername(e.currentTarget.value);
   };
-  const [password, setPassword] = useState('');
+
   const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.currentTarget.value);
   };
+  */
+
+  const { actions } = useAuthSlice();
+  const dispatch = useDispatch();
+  const authForm = useSelector(selectAuth);
+  const { username, password, email } = authForm;
+
   return (
     <div>
       <form>
@@ -41,7 +50,10 @@ export function AuthForm(props: Props) {
           placeholder="username"
           name="username"
           value={username}
-          onChange={handleUsernameChange}
+          onChange={event => {
+            dispatch(actions.setUsername(event.currentTarget.value));
+          }}
+          //onChange={handleUsernameChange}
         />
         <p> password </p>
         <input
@@ -49,7 +61,9 @@ export function AuthForm(props: Props) {
           value={password}
           name="password1"
           placeholder="password1"
-          onChange={handlePasswordChange}
+          onChange={event => {
+            dispatch(actions.setPassword(event.currentTarget.value));
+          }}
         />
         <p> confirm password </p>
         <input
@@ -62,10 +76,12 @@ export function AuthForm(props: Props) {
         <p> email </p>
         <input
           type="email"
-          //value={formValues.email}
+          value={email}
           name="email"
           placeholder="email"
-          //onChange={handleInputChange}
+          onChange={event => {
+            dispatch(actions.setEmail(event.currentTarget.value));
+          }}
         />
         <p> languages you know </p>
         <select name="languages_known">
@@ -81,7 +97,7 @@ export function AuthForm(props: Props) {
         </select>
         <p> submit here! </p>
       </form>
-      <button onClick={handleSubmit}> submit </button>
+      <button> submit </button>
     </div>
   );
 }

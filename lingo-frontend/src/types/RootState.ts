@@ -1,4 +1,4 @@
-import { AuthState } from 'app/pages/AuthPage/AuthSlice/types';
+import { AuthState } from 'app/components/AuthForm/AuthSlice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*

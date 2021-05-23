@@ -4,13 +4,25 @@ import { useInjectReducer, useInjectSaga } from 'utils/redux-injectors';
 import { authSaga } from './saga';
 import { AuthState } from './types';
 
-export const initialState: AuthState = {};
+export const initialState: AuthState = {
+  username: 'initial username',
+  password: 'initial password',
+  email: 'initial email',
+};
 
 const slice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    someAction(state, action: PayloadAction<any>) {},
+    setUsername(state, action: PayloadAction<any>) {
+      state.username = action.payload;
+    },
+    setEmail(state, action: PayloadAction<any>) {
+      state.email = action.payload;
+    },
+    setPassword(state, action: PayloadAction<any>) {
+      state.password = action.payload;
+    },
   },
 });
 
