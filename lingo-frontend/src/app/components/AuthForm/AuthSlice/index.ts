@@ -8,20 +8,28 @@ export const initialState: AuthState = {
   username: 'initial username',
   password: 'initial password',
   email: 'initial email',
+  isSubmitted: false,
+  responseString: '',
 };
 
 const slice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setUsername(state, action: PayloadAction<any>) {
+    setUsername(state, action: PayloadAction<string>) {
       state.username = action.payload;
     },
-    setEmail(state, action: PayloadAction<any>) {
+    setEmail(state, action: PayloadAction<string>) {
       state.email = action.payload;
     },
-    setPassword(state, action: PayloadAction<any>) {
+    setPassword(state, action: PayloadAction<string>) {
       state.password = action.payload;
+    },
+    requestSubmit(state, action: PayloadAction<boolean>) {
+      state.isSubmitted = action.payload;
+    },
+    setResponseString(state, action: PayloadAction<string>) {
+      state.responseString = action.payload;
     },
   },
 });

@@ -14,32 +14,10 @@ import { selectAuth } from './AuthSlice/selectors';
 interface Props {}
 
 export function AuthForm(props: Props) {
-  /*
-  function handleSubmit() {
-    //event.preventDefault();
-    alert(username);
-    axios
-      .post('http://localhost:8000/accounts/register/', { username })
-      .then(result => {
-        console.log(result);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-  const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUsername(e.currentTarget.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  };
-  */
-
   const { actions } = useAuthSlice();
   const dispatch = useDispatch();
   const authForm = useSelector(selectAuth);
-  const { username, password, email } = authForm;
+  const { username, password, email, isSubmitted } = authForm;
 
   return (
     <div>
@@ -97,7 +75,14 @@ export function AuthForm(props: Props) {
         </select>
         <p> submit here! </p>
       </form>
-      <button> submit </button>
+      <button
+        onClick={event => {
+          dispatch(actions.requestSubmit(true));
+        }}
+      >
+        {' '}
+        submit{' '}
+      </button>
     </div>
   );
 }
