@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework.authtoken',
     'frontend',
-    'channels',
-    'chat',
+    #'channels',
+    #'chat',
     'corsheaders',
 ]
 

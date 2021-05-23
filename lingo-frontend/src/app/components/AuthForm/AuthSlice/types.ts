@@ -4,7 +4,8 @@ export interface AuthState {
   password: string;
   email: string;
   isSubmitted: boolean;
-  responseString: string;
+  accountCreated: boolean;
+  token: string;
   //languages_known: string;
   //languages_to_learn: string;
 }

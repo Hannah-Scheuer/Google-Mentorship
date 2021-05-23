@@ -9,7 +9,8 @@ export const initialState: AuthState = {
   password: 'initial password',
   email: 'initial email',
   isSubmitted: false,
-  responseString: '',
+  token: '',
+  accountCreated: false,
 };
 
 const slice = createSlice({
@@ -28,8 +29,11 @@ const slice = createSlice({
     requestSubmit(state, action: PayloadAction<boolean>) {
       state.isSubmitted = action.payload;
     },
-    setResponseString(state, action: PayloadAction<string>) {
-      state.responseString = action.payload;
+    setAccountCreated(state, action: PayloadAction<boolean>) {
+      state.accountCreated = action.payload;
+    },
+    setToken(state, action: PayloadAction<string>) {
+      state.token = action.payload;
     },
   },
 });
