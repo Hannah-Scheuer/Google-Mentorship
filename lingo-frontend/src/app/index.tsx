@@ -16,9 +16,17 @@ import { GlobalStyle } from 'styles/global-styles';
 import { HomePage } from './pages/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import { useTranslation } from 'react-i18next';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAuth } from './components/AuthForm/AuthSlice/selectors';
+import { UserHomePage } from './pages/UserHomePage';
+import { useAuthSlice, authActions } from './components/AuthForm/AuthSlice';
 
 export function App() {
   const { i18n } = useTranslation();
+  const { actions } = useAuthSlice();
+  const dispatch = useDispatch();
+  const authForm = useSelector(selectAuth);
+  const token = authForm.token;
   return (
     <BrowserRouter>
       <Helmet
@@ -30,8 +38,8 @@ export function App() {
       </Helmet>
 
       <Switch>
-        <Route exact path="/" component={HomePage} />
         <Route exact path="/signIn" component={AuthPage} />
+        <Route path="" component={token == '' ? HomePage : UserHomePage} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

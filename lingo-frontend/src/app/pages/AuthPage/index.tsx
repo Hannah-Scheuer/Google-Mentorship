@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AuthForm } from '../../components/AuthForm';
+import { Link } from 'react-router-dom';
 
 export function AuthPage() {
   return (
@@ -11,6 +12,7 @@ export function AuthPage() {
       </Helmet>
       <span>This is AuthPage Hello!!! what's up 你好</span>
       <AuthForm />
+      <Link to="/"> See matches </Link>
     </>
   );
 }
