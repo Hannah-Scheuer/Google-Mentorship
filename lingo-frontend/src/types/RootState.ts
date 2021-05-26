@@ -1,5 +1,5 @@
 import { AuthState } from 'app/components/AuthForm/AuthSlice/types';
-import { MatchesState } from 'app/pages/UserHomePage/slice/types';
+import { MatchesState } from 'app/pages/UserHomePage/MatchesSlice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*

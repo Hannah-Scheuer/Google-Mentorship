@@ -15,8 +15,7 @@ function* requestMatches() {
     axios.get,
     'http://localhost:8000/accounts/',
     {
-      token: token,
-      matches: matches,
+      headers: {'Authorization': 'Token ' + token},
     },
   );
 }

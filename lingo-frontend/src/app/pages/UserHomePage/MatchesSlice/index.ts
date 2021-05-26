@@ -16,7 +16,7 @@ const slice = createSlice({
     startLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
-    setMatches(state, action: PayloadAction<string[]>) {
+    setMatches(state, action: PayloadAction<{username: string}[]>) {
       state.matches = action.payload;
     },
   },
