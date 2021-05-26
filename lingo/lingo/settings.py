@@ -42,9 +42,9 @@ INSTALLED_APPS = [
     'accounts',
     'rest_framework.authtoken',
     'frontend',
-    'channels',
-    'chat',
     'corsheaders',
+    'chat',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -145,8 +145,17 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "../lingo-frontend/build/static")
 ]
 
-ASGI_APPLICATION = "myproject.asgi.application"
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+ASGI_APPLICATION = "lingo.asgi.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
