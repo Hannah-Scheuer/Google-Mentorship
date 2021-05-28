@@ -8,7 +8,7 @@
 
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { AuthPage } from './pages/AuthPage';
 
 import { GlobalStyle } from 'styles/global-styles';
@@ -38,7 +38,9 @@ export function App() {
       </Helmet>
 
       <Switch>
-        <Route exact path="/signIn" component={AuthPage} />
+        <Route path="/signIn">
+          {token != '' ? <Redirect to="/" /> : <AuthPage />}
+        </Route>
         <Route path="" component={token == '' ? HomePage : UserHomePage} />
         <Route component={NotFoundPage} />
       </Switch>

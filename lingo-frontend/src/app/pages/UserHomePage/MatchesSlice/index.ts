@@ -16,12 +16,11 @@ const slice = createSlice({
     startLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
-    setMatches(state, action: PayloadAction<string[]>) {
+    setMatches(state, action: PayloadAction<{ user: string }[]>) {
       state.matches = action.payload;
     },
   },
 });
-
 
 export const { actions: matchesActions } = slice;
 
