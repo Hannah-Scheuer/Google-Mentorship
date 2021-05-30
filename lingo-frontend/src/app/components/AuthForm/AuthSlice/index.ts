@@ -13,6 +13,7 @@ export const initialState: AuthState = {
   accountCreated: false,
   languages_known: '',
   languages_to_learn: '',
+  isLoggedIn: false,
 };
 
 const slice = createSlice({
@@ -42,6 +43,9 @@ const slice = createSlice({
     },
     setLangLearn(state, action: PayloadAction<string>) {
       state.languages_to_learn = action.payload;
+    },
+    requestLogIn(state, action: PayloadAction<boolean>) {
+      state.isLoggedIn = action.payload;
     },
   },
 });

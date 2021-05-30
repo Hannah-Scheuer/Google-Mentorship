@@ -48,4 +48,5 @@ function* requestSignIn() {
 export function* authSaga() {
   yield takeLatest(actions.requestSubmit.type, postSignUp);
   yield takeLatest(actions.setAccountCreated.type, requestSignIn);
+  yield takeLatest(actions.requestLogIn.type, requestSignIn);
 }

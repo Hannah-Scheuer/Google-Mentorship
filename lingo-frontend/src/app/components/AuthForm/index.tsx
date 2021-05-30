@@ -38,7 +38,6 @@ export function AuthForm(props: Props) {
           onChange={event => {
             dispatch(actions.setUsername(event.currentTarget.value));
           }}
-          //onChange={handleUsernameChange}
         />
         <p> password </p>
         <input

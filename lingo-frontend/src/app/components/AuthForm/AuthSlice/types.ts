@@ -8,4 +8,5 @@ export interface AuthState {
   token: string;
   languages_known: string;
   languages_to_learn: string;
+  isLoggedIn: boolean;
 }

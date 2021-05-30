@@ -19,7 +19,11 @@ export function UserHomePage(props: Props) {
   }
   return (
     <div>
-      <span> This is the user home page </span>
+      <span>
+        {' '}
+        Welcome! Here are the people you matched with. Click their name to begin
+        chatting.{' '}
+      </span>
       {matchesPage.matches?.map(match => (
         <li>{match.user}</li>
       ))}
