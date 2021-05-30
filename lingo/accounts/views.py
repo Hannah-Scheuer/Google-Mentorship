@@ -48,6 +48,9 @@ class RoomView(APIView):
     def post(self, request):
         user = request.user
         partner = User.objects.get(username=request.data.get('user'))
+        if Room.objects.filter(users=user).filter(users=partner).get():
+            err_message = {'error': 'Room already exists.'}
+            return Response(err_message, status=status.HTTP_400_BAD_REQUEST)
         serializer = RoomSerializer(data={'users': [user.pk, partner.pk]})
         if serializer.is_valid():
             serializer.save()
