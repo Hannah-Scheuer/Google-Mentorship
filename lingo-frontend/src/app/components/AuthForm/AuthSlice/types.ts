@@ -6,6 +6,6 @@ export interface AuthState {
   isSubmitted: boolean;
   accountCreated: boolean;
   token: string;
-  //languages_known: string;
-  //languages_to_learn: string;
+  languages_known: string;
+  languages_to_learn: string;
 }
