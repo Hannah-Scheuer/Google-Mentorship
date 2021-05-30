@@ -1,4 +1,5 @@
-import { AuthState } from 'app/pages/AuthPage/AuthSlice/types';
+import { AuthState } from 'app/components/AuthForm/AuthSlice/types';
+import { MatchesState } from 'app/pages/UserHomePage/MatchesSlice/types';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 /*
@@ -7,5 +8,6 @@ import { AuthState } from 'app/pages/AuthPage/AuthSlice/types';
 */
 export interface RootState {
   auth?: AuthState;
+  matches?: MatchesState;
   // [INSERT NEW REDUCER KEY ABOVE] < Needed for generating containers seamlessly
 }

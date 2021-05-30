@@ -4,10 +4,28 @@
  *
  */
 import * as React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { ChangeEvent } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useAuthSlice, authActions } from './AuthSlice';
+import { selectAuth } from './AuthSlice/selectors';
 
 interface Props {}
 
 export function AuthForm(props: Props) {
+  const { actions } = useAuthSlice();
+  const dispatch = useDispatch();
+  const authForm = useSelector(selectAuth);
+  const {
+    username,
+    password,
+    email,
+    isSubmitted,
+    languages_known,
+    languages_to_learn,
+  } = authForm;
+
   return (
     <div>
       <form>
@@ -15,49 +33,66 @@ export function AuthForm(props: Props) {
         <input
           type="text"
           placeholder="username"
-          //value={formValues.username}
           name="username"
-          //onChange={handleInputChange}
+          value={username}
+          onChange={event => {
+            dispatch(actions.setUsername(event.currentTarget.value));
+          }}
         />
         <p> password </p>
         <input
           type="password"
-          //value={formValues.password1}
+          value={password}
           name="password1"
           placeholder="password1"
-          //onChange={handleInputChange}
-        />
-        <p> confirm password </p>
-        <input
-          type="password"
-          //value={formValues.password2}
-          name="password2"
-          placeholder="password2"
-          //onChange={handleInputChange}
+          onChange={event => {
+            dispatch(actions.setPassword(event.currentTarget.value));
+          }}
         />
         <p> email </p>
         <input
           type="email"
-          //value={formValues.email}
+          value={email}
           name="email"
           placeholder="email"
-          //onChange={handleInputChange}
+          onChange={event => {
+            dispatch(actions.setEmail(event.currentTarget.value));
+          }}
         />
         <p> languages you know </p>
-        <select name="languages_known">
-          <option>Spanish</option>
-          <option>English</option>
+        <select
+          value={languages_known}
+          onChange={event => {
+            dispatch(actions.setLangKnown(event.currentTarget.value));
+          }}
+        >
+          <option> language </option>
+          <option value="ES">Spanish</option>
+          <option value="EN">English</option>
           <option>Mandarin</option>
         </select>
         <p> languages you would like to learn </p>
-        <select name="languages_to_learn">
-          <option>Spanish</option>
-          <option>English</option>
+        <select
+          value={languages_to_learn}
+          onChange={event => {
+            dispatch(actions.setLangLearn(event.currentTarget.value));
+          }}
+        >
+          <option> language </option>
+          <option value="ES">Spanish</option>
+          <option value="EN">English</option>
           <option>Mandarin</option>
         </select>
         <p> submit here! </p>
-        <input type="submit" value="submit" />
       </form>
+      <button
+        onClick={event => {
+          dispatch(actions.requestSubmit(true));
+        }}
+      >
+        {' '}
+        submit{' '}
+      </button>
     </div>
   );
 }
