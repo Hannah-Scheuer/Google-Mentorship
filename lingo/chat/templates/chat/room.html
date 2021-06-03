@@ -11,6 +11,17 @@
     <input id="chat-message-submit" type="button" value="Send">
     {{ room_name|json_script:"room-name" }}
     <script>
+        function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
         const roomName = JSON.parse(document.getElementById('room-name').textContent);
 
         const chatSocket = new WebSocket(
@@ -19,10 +30,11 @@
             + '/ws/chat/'
             + roomName
             + '/'
-        );
+        , ["token", readCookie("token")])
 
         chatSocket.onmessage = function(e) {
             const data = JSON.parse(e.data);
+            console.log(data)
             document.querySelector('#chat-log').value += (data.message + '\n');
         };
 

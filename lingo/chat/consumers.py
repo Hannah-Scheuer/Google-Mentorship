@@ -1,5 +1,7 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
+from channels.auth import login
+from channels.db import database_sync_to_async
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -23,6 +25,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     # Receive message from WebSocket
     async def receive(self, text_data):
+        await login(self.scope, self.scope['user'])
+        await database_sync_to_async(self.scope["session"].save)()
+
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
 
@@ -31,7 +36,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             {
                 'type': 'chat_message',
-                'message': message
+                'message': self.scope["user"].username + ": " + message
             }
         )
 
