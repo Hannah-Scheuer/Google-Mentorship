@@ -35,7 +35,16 @@ export function UserHomePage(props: Props) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: '#579af7',
+        minHeight: '200px',
+        textAlign: 'center',
+        margin: 'auto',
+        width: '60%',
+        padding: '10px',
+      }}
+    >
       <span>
         {' '}
         Welcome! Here are the people you matched with. Click their name to begin
@@ -53,6 +62,20 @@ export function UserHomePage(props: Props) {
         ;
       </select>
       <button
+        style={{
+          backgroundColor: '#f4511e',
+          border: 'none',
+          color: 'white',
+          padding: '16px 32px',
+          textAlign: 'center',
+          fontSize: '16px',
+          margin: '4px 2px',
+          opacity: '0.6',
+          transition: '0.3s',
+          display: 'inline-block',
+          textDecoration: 'none',
+          cursor: 'pointer',
+        }}
         onClick={event => {
           document.cookie = 'token = ' + auth.token;
           window.location.href = roomLink;

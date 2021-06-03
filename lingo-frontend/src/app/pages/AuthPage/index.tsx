@@ -11,10 +11,7 @@ export function AuthPage() {
         <title>Auth Page</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-      <span>
-        Hello, please enter your information in order to make an account and
-        start chatting.
-      </span>
+      <span></span>
       <AuthForm />
     </>
   );

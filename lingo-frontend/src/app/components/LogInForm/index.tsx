@@ -10,6 +10,7 @@ import { ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useAuthSlice, authActions } from './../AuthForm/AuthSlice';
 import { selectAuth } from './../AuthForm/AuthSlice/selectors';
+import { Link } from 'react-router-dom';
 
 interface Props {}
 
@@ -20,8 +21,18 @@ export function LogInForm(props: Props) {
   const { username, password } = authForm;
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: '#579af7',
+        minHeight: '200px',
+        textAlign: 'center',
+        margin: 'auto',
+        width: '60%',
+        padding: '10px',
+      }}
+    >
       <form>
+        <p> Welcome to LingoBerries! Log in below or sign up if you're new. </p>
         <p> username </p>
         <input
           type="text"
@@ -44,6 +55,20 @@ export function LogInForm(props: Props) {
         />
       </form>
       <button
+        style={{
+          backgroundColor: '#f4511e',
+          border: 'none',
+          color: 'white',
+          padding: '16px 32px',
+          textAlign: 'center',
+          fontSize: '16px',
+          margin: '4px 2px',
+          opacity: '0.6',
+          transition: '0.3s',
+          display: 'inline-block',
+          textDecoration: 'none',
+          cursor: 'pointer',
+        }}
         onClick={event => {
           dispatch(actions.requestLogIn(true));
         }}
@@ -51,6 +76,8 @@ export function LogInForm(props: Props) {
         {' '}
         submit{' '}
       </button>
+      <p></p>
+      <Link to="/signIn"> Sign Up </Link>
     </div>
   );
 }

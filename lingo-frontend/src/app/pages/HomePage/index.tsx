@@ -10,11 +10,8 @@ export function HomePage() {
       <Helmet>
         <title>Home Page</title>
       </Helmet>
-      <span>
-        Welcome to LingoBerries! Log in below or sign up if you're new.
-      </span>
+      <span></span>
       <LogInForm />
-      <Link to="/signIn"> Sign Up </Link>
     </>
   );
 }
