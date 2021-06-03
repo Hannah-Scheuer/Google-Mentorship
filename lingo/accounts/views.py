@@ -54,7 +54,6 @@ class RoomView(APIView):
         serializer = RoomSerializer(data={'users': [user.pk, partner.pk]})
         if serializer.is_valid():
             serializer.save()
-            print(serializer.data['users'])
             data = {'url': serializer.data['url']}
             return Response(data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
