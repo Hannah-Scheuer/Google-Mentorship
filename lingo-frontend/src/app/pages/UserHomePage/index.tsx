@@ -25,7 +25,13 @@ export function UserHomePage(props: Props) {
         chatting.{' '}
       </span>
       {matchesPage.matches?.map(match => (
-        <li>{match.user}</li>
+        <button
+          onClick={event => {
+            dispatch(actions.requestRoom(match.user));
+          }}
+        >
+          {match.user}
+        </button>
       ))}
     </div>
   );
