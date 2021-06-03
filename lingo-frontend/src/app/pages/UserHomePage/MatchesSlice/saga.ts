@@ -9,7 +9,7 @@ function* requestMatches() {
   let authState = yield select(selectAuth);
   const { token } = authState;
   let matchesState = yield select(selectMatches);
-  const { matches, isLoading } = matchesState;
+  const { matches, isLoading, roomLink } = matchesState;
   const result = yield call(axios.get, 'http://localhost:8000/accounts/', {
     headers: { Authorization: 'Token ' + token },
   });
@@ -26,14 +26,18 @@ function* setRoom() {
     axios.post,
     'http://localhost:8000/chat/',
     {
-      user: matchesState.hasRoom,
+      user: hasRoom,
     },
     {
       headers: { Authorization: 'Token ' + token },
     },
   );
   const { data } = result;
-  yield put(matchesActions.setRoomLink(data));
+  //console.log(result.data.url);
+  yield put(
+    matchesActions.setRoomLink('http://localhost:8000/chat/' + result.data.url),
+  );
+  //console.log(roomLink);
 }
 
 export function* matchesSaga() {

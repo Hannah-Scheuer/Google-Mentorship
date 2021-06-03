@@ -4,4 +4,5 @@ export interface MatchesState {
   matches: { user: string }[];
   hasRoom: string;
   roomLink: string;
+  hasRoomLink: string;
 }
