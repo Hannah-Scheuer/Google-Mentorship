@@ -5,12 +5,15 @@ import { authSaga } from './saga';
 import { AuthState } from './types';
 
 export const initialState: AuthState = {
-  username: 'initial username',
-  password: 'initial password',
-  email: 'initial email',
+  username: '',
+  password: '',
+  email: '',
   isSubmitted: false,
   token: '',
   accountCreated: false,
+  languages_known: '',
+  languages_to_learn: '',
+  isLoggedIn: false,
 };
 
 const slice = createSlice({
@@ -34,6 +37,15 @@ const slice = createSlice({
     },
     setToken(state, action: PayloadAction<string>) {
       state.token = action.payload;
+    },
+    setLangKnown(state, action: PayloadAction<string>) {
+      state.languages_known = action.payload;
+    },
+    setLangLearn(state, action: PayloadAction<string>) {
+      state.languages_to_learn = action.payload;
+    },
+    requestLogIn(state, action: PayloadAction<boolean>) {
+      state.isLoggedIn = action.payload;
     },
   },
 });

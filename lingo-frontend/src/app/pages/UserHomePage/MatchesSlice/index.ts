@@ -7,6 +7,9 @@ import { MatchesState } from './types';
 export const initialState: MatchesState = {
   isLoading: false,
   matches: [],
+  hasRoom: '',
+  roomLink: ' ',
+  hasRoomLink: '',
 };
 
 const slice = createSlice({
@@ -16,12 +19,20 @@ const slice = createSlice({
     startLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
-    setMatches(state, action: PayloadAction<{username: string}[]>) {
+    setMatches(state, action: PayloadAction<{ user: string }[]>) {
       state.matches = action.payload;
+    },
+    requestRoom(state, action: PayloadAction<any>) {
+      state.hasRoom = action.payload;
+    },
+    setRoomLink(state, action: PayloadAction<string>) {
+      state.roomLink = action.payload;
+    },
+    loadRoom(state, action: PayloadAction<string>) {
+      state.hasRoomLink = 'http://localhost:8000/chat/' + action.payload;
     },
   },
 });
-
 
 export const { actions: matchesActions } = slice;
 

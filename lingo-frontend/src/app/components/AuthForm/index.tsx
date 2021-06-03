@@ -17,7 +17,14 @@ export function AuthForm(props: Props) {
   const { actions } = useAuthSlice();
   const dispatch = useDispatch();
   const authForm = useSelector(selectAuth);
-  const { username, password, email, isSubmitted } = authForm;
+  const {
+    username,
+    password,
+    email,
+    isSubmitted,
+    languages_known,
+    languages_to_learn,
+  } = authForm;
 
   return (
     <div>
@@ -31,7 +38,6 @@ export function AuthForm(props: Props) {
           onChange={event => {
             dispatch(actions.setUsername(event.currentTarget.value));
           }}
-          //onChange={handleUsernameChange}
         />
         <p> password </p>
         <input
@@ -42,14 +48,6 @@ export function AuthForm(props: Props) {
           onChange={event => {
             dispatch(actions.setPassword(event.currentTarget.value));
           }}
-        />
-        <p> confirm password </p>
-        <input
-          type="password"
-          //value={formValues.password2}
-          name="password2"
-          placeholder="password2"
-          //onChange={handleInputChange}
         />
         <p> email </p>
         <input
@@ -62,15 +60,27 @@ export function AuthForm(props: Props) {
           }}
         />
         <p> languages you know </p>
-        <select name="languages_known">
-          <option>Spanish</option>
-          <option>English</option>
+        <select
+          value={languages_known}
+          onChange={event => {
+            dispatch(actions.setLangKnown(event.currentTarget.value));
+          }}
+        >
+          <option> language </option>
+          <option value="ES">Spanish</option>
+          <option value="EN">English</option>
           <option>Mandarin</option>
         </select>
         <p> languages you would like to learn </p>
-        <select name="languages_to_learn">
-          <option>Spanish</option>
-          <option>English</option>
+        <select
+          value={languages_to_learn}
+          onChange={event => {
+            dispatch(actions.setLangLearn(event.currentTarget.value));
+          }}
+        >
+          <option> language </option>
+          <option value="ES">Spanish</option>
+          <option value="EN">English</option>
           <option>Mandarin</option>
         </select>
         <p> submit here! </p>

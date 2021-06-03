@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { AuthForm } from '../../components/AuthForm';
+import { LogInForm } from '../../components/LogInForm';
 import { Link } from 'react-router-dom';
 
 export function HomePage() {
@@ -8,10 +9,12 @@ export function HomePage() {
     <>
       <Helmet>
         <title>Home Page</title>
-        <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-      <span>HomePage Hello!!! what's up 你好</span>
-      <Link to="/signIn"> Sign In </Link>
+      <span>
+        Welcome to LingoBerries! Log in below or sign up if you're new.
+      </span>
+      <LogInForm />
+      <Link to="/signIn"> Sign Up </Link>
     </>
   );
 }
