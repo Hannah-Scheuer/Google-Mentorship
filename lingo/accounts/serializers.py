@@ -8,8 +8,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RoomSerializer(serializers.ModelSerializer):
-    #users = UserSerializer(many=True)
-
     class Meta:
         model = Room
         fields = ('url', 'users',)
