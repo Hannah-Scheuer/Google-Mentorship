@@ -9,6 +9,11 @@ import { ChangeEvent } from 'react';
 import { useMatchesSlice, matchesActions } from './MatchesSlice';
 import { selectMatches } from './MatchesSlice/selectors';
 import { useSelector, useDispatch } from 'react-redux';
+import {
+  useAuthSlice,
+  authActions,
+} from './../../components/AuthForm/AuthSlice';
+import { selectAuth } from './../../components/AuthForm/AuthSlice/selectors';
 
 interface Props {}
 
@@ -17,6 +22,7 @@ export function UserHomePage(props: Props) {
   const { actions } = useMatchesSlice();
   const matchesPage = useSelector(selectMatches);
   const { isLoading, matches, roomLink, hasRoom } = matchesPage;
+  const auth = useSelector(selectAuth);
   if (!isLoading) {
     dispatch(actions.startLoading(true));
   }
@@ -48,6 +54,7 @@ export function UserHomePage(props: Props) {
       </select>
       <button
         onClick={event => {
+          document.cookie = 'token = ' + auth.token;
           window.location.href = roomLink;
           //dispatch(actions.loadRoom(roomLink));
         }}
